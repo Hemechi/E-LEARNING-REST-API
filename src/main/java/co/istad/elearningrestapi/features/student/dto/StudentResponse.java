@@ -1,4 +1,9 @@
 package co.istad.elearningrestapi.features.student.dto;
 
-public record StudentResponse() {
+import jakarta.validation.constraints.NotBlank;
+
+public record StudentResponse(
+        String highSchool,
+        String university
+) {
 }

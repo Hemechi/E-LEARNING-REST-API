@@ -1,4 +1,11 @@
 package co.istad.elearningrestapi.features.student.dto;
 
-public record StudentCreateRequest() {
+import jakarta.validation.constraints.NotBlank;
+
+public record StudentCreateRequest(
+        @NotBlank(message = "HighSchool is required")
+        String highSchool,
+        @NotBlank(message = "University is required")
+        String university
+) {
 }
