@@ -31,4 +31,5 @@ public interface CategoryRepository extends JpaRepository<Category,Long> {
     void disableCategoryByAlias(String alias);
 
     Boolean existsByAlias(String alias);
+    Optional<Category> findByAliasAndIsDeletedFalse(String alias);
 }

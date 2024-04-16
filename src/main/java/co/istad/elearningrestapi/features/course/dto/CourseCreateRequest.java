@@ -13,10 +13,9 @@ public record CourseCreateRequest(
         String title,
         @NotBlank(message = "Description is required")
         String description,
-        Boolean isFree,
-        @NotBlank(message = "Instructor is required")
-        String instructor,
-        @NotBlank(message = "Category is required")
-        String category
+        boolean isFree,
+        Long instructorId,
+        Long categoryId
 ) {
 }
+

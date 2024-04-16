@@ -62,7 +62,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public CategoryResponse findCategoryByAlias(String alias) {
-        Category category = categoryRepository.findByAlias(alias)
+        Category category = categoryRepository.findByAliasAndIsDeletedFalse(alias)
                 .orElseThrow(()->
                         new ResponseStatusException(
                                 HttpStatus.NOT_FOUND,
