@@ -1,4 +1,10 @@
 package co.istad.elearningrestapi.features.enrollment.dto;
 
-public record EnrollmentProgressRequest() {
+import jakarta.validation.constraints.NotNull;
+
+public record EnrollmentProgressRequest(
+        @NotNull(message = "Progress is required")
+        int progress
+) {
 }
+

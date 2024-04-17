@@ -1,29 +1,56 @@
 package co.istad.elearningrestapi.features.enrollment;
 
+import co.istad.elearningrestapi.base.BaseMessage;
+import co.istad.elearningrestapi.features.enrollment.dto.*;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/enrollments")
 @RequiredArgsConstructor
 public class EnrollmentController {
+    private final EnrollmentService enrollmentService;
 
-//[POST] /api/v1/enrollments => Create a new enrollment
-//[GET] /api/v1/enrollments => Find all enrollments by pagination, sort, and filter below:
-//    Sort by enrolledAt
-//    Filter by code, course’s title, course’s category, student’s username, isCertified
-//[GET] /api/v1/enrollments/{code} => Find an enrollment details
-//[PUT] /api/v1/enrollments/{code}/progress => Update an enrollment progress
-//[GET] /api/v1/enrollments/{code}/progress => Get the progress of enrolled learning
-//[PUT]/api/v1/enrollments/{code}/is-certified => Certify an enrollment when progress 100
-//[PUT] /api/v1/enrollments/{code} => Disable an enrollment
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    void createNew(@Valid @RequestBody EnrollmentCreateRequest enrollmentCreateRequest){
+        enrollmentService.createNew(enrollmentCreateRequest);
+    }
+    @GetMapping
+    List<EnrollmentResponse> findAll(@RequestParam(required = false,defaultValue = "0") int page,
+                                     @RequestParam(required = false,defaultValue = "25") int size,
+                                     @RequestParam(required = false) String sort,
+                                     @RequestParam(required = false) String code,
+                                     @RequestParam(required = false) String courseTitle,
+                                     @RequestParam(required = false) String courseCategory,
+                                     @RequestParam(required = false) String studentUsername,
+                                     @RequestParam(required = false) boolean isCertified){
+        return enrollmentService.findAllEnrollments(page, size, sort, code, courseTitle, courseCategory, studentUsername, isCertified);
+    }
 
-//    city and countries end-points
+    @GetMapping("/{code}")
+    EnrollmentDetailsResponse findEnrollmentDetailByCode(@PathVariable String code){
+        return enrollmentService.findEnrollmentDetailsByCode(code);
 
-//[GET] /api/v1/cities => Find all cities (sort by name or filter by name)
-//[GET] /api/v1/countries => Find all countries (sort by name or filter by name)
-//[GET] /api/v1/countries/{iso}/cities => Find all cities in a country
-
-
+    }
+    @PutMapping("/{code}/progress")
+    void updateEnrollment(@PathVariable String code, @Valid @RequestBody EnrollmentProgressRequest enrollmentProgressRequest){
+        enrollmentService.updateProgressByCode(code, enrollmentProgressRequest);
+    }
+    @GetMapping("/{code}/progress")
+    EnrollmentProgressResponse findProgressByCode(@PathVariable String code){
+        return enrollmentService.findProgressByCode(code);
+    }
+    @PutMapping("/{code}/is-certified")
+    void updateIsCertified(@PathVariable String code){
+        enrollmentService.updateCertifyByCode(code);
+    }
+    @PutMapping("/{code}")
+    BaseMessage disableByCode(@PathVariable String code){
+        return enrollmentService.disableByCode(code);
+    }
 }

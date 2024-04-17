@@ -1,4 +1,6 @@
 package co.istad.elearningrestapi.features.enrollment.dto;
 
-public record EnrollmentProgressResponse() {
+public record EnrollmentProgressResponse(
+        int progress
+) {
 }
