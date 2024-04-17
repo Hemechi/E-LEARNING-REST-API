@@ -2,6 +2,7 @@ package co.istad.elearningrestapi.features.student;
 
 import co.istad.elearningrestapi.features.student.dto.StudentCreateRequest;
 import co.istad.elearningrestapi.features.student.dto.StudentResponse;
+import co.istad.elearningrestapi.features.student.dto.StudentUpdateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,16 @@ public class StudentController {
         return studentService.findList(page, size);
     }
 
-//[GET] /api/v1/students/{username} => Find a student’s profile
-//[PUT] /api/v1/students/{username} => Update a student’s profile
+    //Find a student’s profile
+    @GetMapping("/{username}")
+    StudentResponse findStudentProfileByUsername(@PathVariable String username) {
+        return studentService.findStudentProfileByUsername(username);
+    }
+
+    //Update a student’s profile
+    @PutMapping("/{username}")
+    StudentResponse updateStudentProfileByUsername(@PathVariable String username,@Valid @RequestBody StudentUpdateRequest studentUpdateRequest) {
+        return studentService.updateStudentProfileByUsername(username, studentUpdateRequest);
+    }
 
 }
