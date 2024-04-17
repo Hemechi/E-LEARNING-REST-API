@@ -1,7 +1,6 @@
 package co.istad.elearningrestapi.features.country;
 
 import co.istad.elearningrestapi.domain.Country;
-import co.istad.elearningrestapi.features.city.CityRepository;
 import co.istad.elearningrestapi.features.city.dto.CityResponse;
 import co.istad.elearningrestapi.features.country.dto.CountryResponse;
 import co.istad.elearningrestapi.mapper.CityMapper;
@@ -23,7 +22,6 @@ import java.util.stream.Collectors;
 public class CountryServiceImpl implements CountryService{
     private final CountryRepository countryRepository;
     private final CountryMapper countryMapper;
-    private final CityRepository cityRepository;
     private final CityMapper cityMapper;
 
     @Override
