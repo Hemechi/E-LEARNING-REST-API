@@ -2,6 +2,7 @@ package co.istad.elearningrestapi.features.instructor;
 
 import co.istad.elearningrestapi.features.instructor.dto.InstructorCreateRequest;
 import co.istad.elearningrestapi.features.instructor.dto.InstructorResponse;
+import co.istad.elearningrestapi.features.instructor.dto.InstructorUpdateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -29,7 +30,16 @@ public class InstructorController {
         return instructorService.findList(page, size);
     }
 
-//[GET] /api/v1/instructors/{username} => Find an instructor’s profile
-//[PUT] /api/v1/instructors/{username} => Update an instructor’s profile
+    //Find an instructor’s profile
+    @GetMapping("/{username}")
+    InstructorResponse findInstructorProfileByUsername(@PathVariable String username) {
+        return instructorService.findInstructorProfileByUsername(username);
+    }
+
+    //Update an instructor’s profile
+    @PutMapping("/{username}")
+    InstructorResponse updateInstructorProfileByUsername(@PathVariable String username,@Valid @RequestBody InstructorUpdateRequest instructorUpdateRequest) {
+        return instructorService.updateInstructorProfileByUsername(username, instructorUpdateRequest);
+    }
 
 }

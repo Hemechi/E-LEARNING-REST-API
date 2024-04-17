@@ -1,5 +1,6 @@
 package co.istad.elearningrestapi.features.instructor.dto;
 
+import co.istad.elearningrestapi.features.user.dto.UserDetailsResponse;
 import jakarta.validation.constraints.NotBlank;
 
 public record InstructorResponse(
@@ -7,6 +8,7 @@ public record InstructorResponse(
         String github,
         String jobTitle,
         String linkedIn,
-        String website
+        String website,
+        UserDetailsResponse user
 ) {
 }
