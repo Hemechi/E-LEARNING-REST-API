@@ -1,7 +1,6 @@
 package co.istad.elearningrestapi.features.user;
 
 import co.istad.elearningrestapi.domain.User;
-import co.istad.elearningrestapi.features.user.dto.RoleResponse;
 import co.istad.elearningrestapi.features.user.dto.UserDetailsResponse;
 import co.istad.elearningrestapi.mapper.UserMapper;
 import jakarta.transaction.Transactional;
