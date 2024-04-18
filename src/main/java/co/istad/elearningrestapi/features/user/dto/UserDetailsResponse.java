@@ -1,6 +1,5 @@
 package co.istad.elearningrestapi.features.user.dto;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public record UserDetailsResponse(

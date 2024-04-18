@@ -1,14 +1,13 @@
 package co.istad.elearningrestapi.features.user;
 
+import co.istad.elearningrestapi.domain.Authority;
 import co.istad.elearningrestapi.domain.User;
-import co.istad.elearningrestapi.features.user.dto.UserDetailsResponse;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

@@ -1,6 +1,6 @@
 package co.istad.elearningrestapi.features.user;
 
-import co.istad.elearningrestapi.features.user.dto.RoleResponse;
+import co.istad.elearningrestapi.features.user.dto.RoleAuthorityResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("api/v1/roles")
@@ -18,13 +17,13 @@ public class RoleController {
 
     private final RoleService roleService;
     @GetMapping
-    public ResponseEntity<List<RoleResponse>> findAll() {
+    public ResponseEntity<List<RoleAuthorityResponse>> findAll() {
 
         return ResponseEntity.ok(roleService.findAll());
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<RoleResponse> findByName(
+    public ResponseEntity<RoleAuthorityResponse> findByName(
             @PathVariable String name) {
 
         return ResponseEntity.ok(roleService.findByName(name));
